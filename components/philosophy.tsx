@@ -1,111 +1,93 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { HighlightedText } from "./highlighted-text"
-
-const philosophyItems = [
-  {
-    title: "Excellence in service",
-    description:
-      "Anticipating every need with precision and grace. We deliver experiences that feel effortless and exceed expectations.",
-  },
-  {
-    title: "Timeless design",
-    description:
-      "Luxury that transcends trends. Our fleet embodies classic elegance paired with cutting-edge innovation.",
-  },
-  {
-    title: "Privacy and discretion",
-    description:
-      "Your journey is paramount. We ensure complete confidentiality and personalized attention on every flight.",
-  },
-  {
-    title: "Uncompromising standards",
-    description: "Rigorous maintenance and safety protocols ensure peace of mind. Excellence is non-negotiable.",
-  },
-]
+import { useRef } from "react"
+import { ArrowRight } from "lucide-react"
+import { motion, useInView } from "framer-motion"
 
 export function Philosophy() {
-  const [visibleItems, setVisibleItems] = useState<number[]>([])
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = Number(entry.target.getAttribute("data-index"))
-          if (entry.isIntersecting) {
-            setVisibleItems((prev) => [...new Set([...prev, index])])
-          }
-        })
-      },
-      { threshold: 0.3 },
-    )
-
-    itemRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="about" className="py-32 md:py-29">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left column - Title and image */}
-          <div className={`lg:sticky lg:top-32 lg:self-start transition-all duration-700 ${
-            visibleItems.length > 0 ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
-          }`}>
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">Our Philosophy</p>
-            <h2 className="text-6xl md:text-6xl font-serif font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-8xl">
-              Luxury with
-              <br />
-              <HighlightedText>purpose</HighlightedText>
-            </h2>
+    <section 
+      id="about" 
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--bg-main)]"
+    >
 
-            <div className="relative hidden lg:block">
-              <img
-                src="/images/exterior.png"
-                alt="Architectural sketch of home office workspace"
-                className="opacity-90 relative z-10 w-auto"
-              />
-            </div>
-          </div>
+      <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-24">
+        <div className="max-w-5xl mx-auto text-center">
+          
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-8"
+          >
+            <span className="text-[var(--text-muted)] text-xs tracking-[0.4em] uppercase font-medium">
+              The Art of Flight
+            </span>
+          </motion.div>
 
-          {/* Right column - Description and Philosophy items */}
-          <div className="space-y-6 lg:pt-48">
-            <p className={`text-muted-foreground text-lg leading-relaxed max-w-md mb-12 transition-all duration-700 ${
-              visibleItems.length > 0 ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
-            }`}
-            style={{ animationDelay: "0.1s" }}
-            >
-              Premium aviation is more than transportation — it's a statement. We deliver exceptional journeys that reflect your refined taste.
-            </p>
+          {/* Main Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-[var(--text-heading)] leading-[0.9] tracking-tight mb-8 text-balance"
+          >
+            Beyond
+            <br />
+            <span className="italic text-[var(--text-muted)]">Boundaries</span>
+          </motion.h2>
 
-            {philosophyItems.map((item, index) => (
-              <div
-                key={item.title}
-                ref={(el) => {
-                  itemRefs.current[index] = el
-                }}
-                data-index={index}
-                className={`transition-all duration-700 ${
-                  visibleItems.includes(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="flex gap-6">
-                  <span className="text-muted-foreground/50 text-sm font-medium">0{index + 1}</span>
-                  <div>
-                    <h3 className="text-xl font-medium mb-3">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Subtext - minimal */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[var(--text-body)] text-lg md:text-xl font-light max-w-md mx-auto mb-12 leading-relaxed"
+          >
+            Curated journeys for those who expect nothing less than extraordinary.
+          </motion.p>
+
+          {/* Premium CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <button className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[var(--accent-primary)] text-[#0F1115] text-sm tracking-[0.2em] uppercase font-medium hover:bg-[var(--accent-primary-hover)] transition-all duration-500 ease-out">
+              <span className="relative z-10">Request Charter</span>
+              <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-500 group-hover:translate-x-1" />
+            </button>
+          </motion.div>
+
+          {/* Trust indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mt-16 flex items-center justify-center gap-8 text-[var(--text-muted)] text-xs tracking-widest uppercase"
+          >
+            <span>Global Access</span>
+            <span className="w-1 h-1 rounded-full bg-[var(--border-subtle)]" />
+            <span>24/7 Concierge</span>
+            <span className="w-1 h-1 rounded-full bg-[var(--border-subtle)]" />
+            <span>Absolute Privacy</span>
+          </motion.div>
+
         </div>
+      </div>
+
+      {/* Decorative elements */}
+      <div className="absolute bottom-12 left-12 text-[var(--text-muted)] text-xs tracking-[0.3em] uppercase hidden lg:block">
+        Est. 2024
+      </div>
+      
+      <div className="absolute bottom-12 right-12 text-[var(--text-muted)] text-xs tracking-[0.3em] uppercase hidden lg:block">
+        Private Aviation
       </div>
     </section>
   )

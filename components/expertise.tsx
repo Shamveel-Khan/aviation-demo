@@ -59,10 +59,10 @@ export function Expertise() {
     <section id="services" ref={sectionRef} className="py-32 md:py-29">
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-3xl mb-20">
-          <p className={`text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6 transition-all duration-700 ${
+          <p className={`text-[var(--text-muted)] text-sm tracking-[0.3em] uppercase mb-6 transition-all duration-700 ${
             visibleItems.length > 0 ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
           }`}>What We Offer</p>
-          <h2 className={`text-6xl font-serif font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-8xl transition-all duration-700 ${
+          <h2 className={`text-6xl font-serif font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-8xl transition-all duration-700 text-[var(--text-heading)] ${
             visibleItems.length > 0 ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
           }`}
           style={{ animationDelay: "0.1s" }}
@@ -71,7 +71,7 @@ export function Expertise() {
             <br />
             for discerning travelers
           </h2>
-          <p className={`text-muted-foreground text-lg leading-relaxed transition-all duration-700 ${
+          <p className={`text-[var(--text-body)] text-lg leading-relaxed transition-all duration-700 ${
             visibleItems.length > 0 ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
           }`}
           style={{ animationDelay: "0.2s" }}
@@ -90,7 +90,7 @@ export function Expertise() {
                   itemRefs.current[index] = el
                 }}
                 data-index={index}
-                className={`relative pl-8 border-l border-border transition-all duration-700 ${
+                className={`relative pl-8 border-l border-[var(--border-subtle)] transition-all duration-700 ${
                   visibleItems.includes(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
@@ -103,10 +103,10 @@ export function Expertise() {
                     transitionDelay: `${index * 150}ms`,
                   }}
                 >
-                  <Icon className="w-10 h-10 mb-4 text-foreground" strokeWidth={1.25} />
+                  <Icon className="w-10 h-10 mb-4 text-[var(--text-heading)]" strokeWidth={1.25} />
                 </div>
-                <h3 className="text-xl font-medium mb-4">{area.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{area.description}</p>
+                <h3 className="text-xl font-medium mb-4 text-[var(--text-heading)]">{area.title}</h3>
+                <p className="text-[var(--text-body)] leading-relaxed">{area.description}</p>
               </div>
             )
           })}

@@ -85,18 +85,18 @@ export function Projects() {
   }, [])
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 md:py-29 bg-card">
+    <section id="projects" ref={sectionRef} className="py-32 md:py-29 bg-[var(--surface)]">
       <div className="container mx-auto px-6 md:px-12">
         <div className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 transition-all duration-700 ${
           sectionVisible ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
         }`}>
           <div>
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">Our Fleet</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium tracking-tight">Premium Aircraft</h2>
+            <p className="text-[var(--text-muted)] text-sm tracking-[0.3em] uppercase mb-6">Our Fleet</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium tracking-tight text-[var(--text-heading)]">Premium Aircraft</h2>
           </div>
           <a
             href="#"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+            className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--text-heading)] transition-colors group"
           >
             View all projects
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -120,22 +120,22 @@ export function Projects() {
                   }`}
                 />
                 <div
-                  className="absolute inset-0 bg-primary origin-top"
+                  className="absolute inset-0 bg-[var(--surface)] origin-top"
                   style={{
                     transform: revealedImages.has(project.id) ? "scaleY(0)" : "scaleY(1)",
-                    transition: "transform 1.5s cubic-bezier(0.76, 0, 0.24, 1)", // Increased duration from 0.6s to 1.5s for slower reveal
+                    transition: "transform 1.5s cubic-bezier(0.76, 0, 0.24, 1)",
                   }}
                 />
               </div>
 
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-medium mb-2 group-hover:underline underline-offset-4">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <h3 className="text-xl font-medium mb-2 group-hover:underline underline-offset-4 text-[var(--text-heading)]">{project.title}</h3>
+                  <p className="text-[var(--text-body)] text-sm">
                     {project.category} · {project.location}
                   </p>
                 </div>
-                <span className="text-muted-foreground/60 text-sm">{project.year}</span>
+                <span className="text-[var(--text-muted)] text-sm">{project.year}</span>
               </div>
             </article>
           ))}

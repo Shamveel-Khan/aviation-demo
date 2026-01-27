@@ -29,14 +29,14 @@ export function HighlightedText({ children }: { children: React.ReactNode }) {
     <span ref={spanRef} className="relative inline-block">
       {children}
       <svg
-        className="absolute -bottom-1 left-0 w-full h-4 overflow-visible"
+        className="absolute -bottom-1 left-0 w-full h-4 overflow-visible text-[var(--accent-primary)]"
         viewBox="0 0 200 12"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M0 8 Q50 2, 100 6 T200 8"
-          stroke="rgb(184 158 90)"
+          stroke="currentColor"
           strokeWidth="2"
           fill="none"
           strokeLinecap="round"

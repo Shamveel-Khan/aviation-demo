@@ -52,11 +52,11 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/airplane-hero.jpg"
+          src="/images/airplane-hero.png"
           alt="Luxury private jet in flight"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/30 to-background/60" />
+        <div className="absolute inset-0 bg-[rgba(15,17,21,0.75)]" />
       </div>
 
       <div
@@ -69,7 +69,7 @@ export function Hero() {
       >
         <div className="mb-8">
           <p 
-            className={`text-xs tracking-[0.4em] uppercase text-accent mb-6 transition-all duration-700 ${
+            className={`text-xs tracking-[0.4em] uppercase text-[var(--text-muted)] mb-6 transition-all duration-700 ${
               isLoaded ? "animate-fade-in-up" : "opacity-0 translate-y-4"
             }`}
             style={{ animationDelay: "0.1s" }}
@@ -85,7 +85,7 @@ export function Hero() {
             }}
           >
             <h1 
-              className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-balance text-foreground mb-4 tracking-tight leading-[0.9] ${
+              className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-balance text-[var(--text-heading)] mb-4 tracking-tight leading-[0.9] ${
                 isLoaded ? "animate-pop-in" : "opacity-0 scale-75"
               }`}
               style={{ animationDelay: "0.2s" }}
@@ -96,7 +96,7 @@ export function Hero() {
 
           <p 
             ref={subtitleRef}
-            className={`text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mt-8 leading-relaxed transition-all duration-700 ${
+            className={`text-base sm:text-lg md:text-xl text-[var(--text-body)] max-w-2xl mx-auto mt-8 leading-relaxed transition-all duration-700 ${
               isLoaded ? "animate-fade-in-up" : "opacity-0 translate-y-4"
             }`}
             style={{ animationDelay: "0.4s" }}
@@ -108,7 +108,7 @@ export function Hero() {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
         <div className={`${isLoaded ? "animate-subtle-float" : "opacity-0"} transition-opacity duration-700`}>
-          <ArrowDown className="w-5 h-5 text-accent" />
+          <ArrowDown className="w-5 h-5 text-[var(--accent-primary)]" />
         </div>
       </div>
     </section>

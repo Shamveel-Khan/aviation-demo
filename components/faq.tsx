@@ -68,15 +68,15 @@ export function FAQ() {
         <div className={`max-w-3xl mb-16 transition-all duration-700 ${
           sectionVisible ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
         }`}>
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">FAQ</p>
-          <h2 className="text-6xl font-serif font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-7xl">
+          <p className="text-[var(--text-muted)] text-sm tracking-[0.3em] uppercase mb-6">FAQ</p>
+          <h2 className="text-6xl font-serif font-medium leading-[1.15] tracking-tight mb-6 text-balance lg:text-7xl text-[var(--text-heading)]">
             Common Questions
           </h2>
         </div>
 
         <div>
           {faqs.map((faq, index) => (
-            <div key={index} className={`border-b border-border transition-all duration-700 ${
+            <div key={index} className={`border-b border-[var(--border-subtle)] transition-all duration-700 ${
               sectionVisible ? "animate-fade-in-up opacity-100" : "opacity-0 translate-y-4"
             }`}
             style={{ animationDelay: `${index * 100}ms` }}
@@ -85,11 +85,11 @@ export function FAQ() {
                 onClick={() => toggleQuestion(index)}
                 className="w-full py-6 flex items-start justify-between gap-6 text-left group transition-all duration-250"
               >
-                <span className="text-lg font-medium text-foreground transition-colors group-hover:text-foreground/70">
+                <span className="text-lg font-medium text-[var(--text-heading)] transition-colors group-hover:text-[var(--text-body)]">
                   {faq.question}
                 </span>
                 <Plus
-                  className={`w-6 h-6 text-foreground flex-shrink-0 transition-transform duration-250 ${
+                  className={`w-6 h-6 text-[var(--text-heading)] flex-shrink-0 transition-transform duration-250 ${
                     openIndex === index ? "rotate-45" : "rotate-0"
                   }`}
                   strokeWidth={1.5}
@@ -100,7 +100,7 @@ export function FAQ() {
                   openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="text-muted-foreground leading-relaxed pb-6 pr-12">{faq.answer}</p>
+                <p className="text-[var(--text-body)] leading-relaxed pb-6 pr-12">{faq.answer}</p>
               </div>
             </div>
           ))}
