@@ -23,7 +23,7 @@ const testimonials = [
     title: "Pharmaceutical Executive",
     quote: "The attention to detail is extraordinary. Every aspect curated to perfection. This isn't just transportation—it's an experience crafted for excellence.",
     initials: "ER",
-  },
+  }
 ]
 
 export function CallToAction() {
@@ -55,22 +55,22 @@ export function CallToAction() {
       (entries) => {
         entries.forEach((entry) => {
           const index = Number(entry.target.getAttribute("data-index"))
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !isNaN(index)) {
             setVisibleItems((prev) => [...new Set([...prev, index])])
           }
         })
       },
-      { threshold: 0.3 },
+      { threshold: 0.1 }, // Lowered threshold so they appear sooner
     )
 
-    const items = sectionRef.current?.querySelectorAll("[data-testimonial-index]")
+    const items = sectionRef.current?.querySelectorAll("[data-index]")
     items?.forEach((item) => itemObserver.observe(item))
 
     return () => itemObserver.disconnect()
   }, [isVisible])
 
   return (
-    <section id="testimonials" ref={sectionRef} className="py-32 md:py-29 bg-[var(--surface-elev)]">
+    <section id="testimonials" ref={sectionRef} className="py-32 md:py-28 bg-[var(--surface-elev)]">
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -103,13 +103,13 @@ export function CallToAction() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
-                data-testimonial-index={index}
+                data-index={index}  // Fixed: was data-testimonial-index
                 className={`transition-all duration-700 ${
                   visibleItems.includes(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="bg-[var(--surface)] border border-[var(--border-subtle)] p-8 h-full flex flex-col">
+                <div className="bg-[var(--surface)] border border-[var(--border-subtle)] p-8 h-full flex flex-col hover:border-[var(--border-accent)] transition-colors duration-300">
                   {/* Quote */}
                   <p className="text-[var(--text-body)] leading-relaxed mb-8 flex-grow text-lg">
                     "{testimonial.quote}"

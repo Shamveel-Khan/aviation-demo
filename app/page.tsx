@@ -1,5 +1,7 @@
 import { Hero } from "@/components/hero"
+import { Selection } from "@/components/selection"
 import { Philosophy } from "@/components/philosophy"
+import { Cities } from "@/components/cities"
 import { Projects } from "@/components/projects"
 import { Expertise } from "@/components/expertise"
 import { FAQ } from "@/components/faq"
@@ -10,7 +12,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg-main)]">
       <Hero />
+      <Selection />
       <Philosophy />
+      <Cities />
       <Projects />
       <CallToAction />
       <FAQ />
