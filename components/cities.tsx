@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { MapPin } from "lucide-react"
+import { MapPin, Plane } from "lucide-react"
 
 const cities = [
   { city: "Las Vegas", country: "United States", code: "LAS" },
@@ -61,7 +61,7 @@ export function Cities() {
               Service where it matters
             </h2>
             <p className="text-[var(--text-body)] text-lg leading-relaxed mt-6">
-              A curated list of key destinations we regularly operate in. Don’t see your city? Our concierge can still arrange
+              A curated list of key destinations we regularly operate in. Don't see your city? Our concierge can still arrange
               access through our global network.
             </p>
           </div>
@@ -72,7 +72,7 @@ export function Cities() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
           {cities.map((c, index) => (
             <div
               key={`${c.city}-${c.code}`}
@@ -85,29 +85,51 @@ export function Cities() {
               }`}
               style={{ transitionDelay: `${index * 60}ms` }}
             >
-              <div className="h-full border border-[var(--border-subtle)] bg-[var(--surface)] p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-[var(--text-heading)] font-medium text-lg leading-tight">
-                      {c.city}
-                    </p>
-                    <p className="text-[var(--text-muted)] text-sm mt-1">
-                      {c.country}
-                    </p>
+              <div className="relative group">
+                {/* Outer ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-[var(--border-subtle)] group-hover:border-[var(--accent-primary)] transition-all duration-500 group-hover:scale-105"></div>
+                
+                {/* Inner circle */}
+                <div className="aspect-square rounded-full bg-[var(--surface)] border border-[var(--border-subtle)] p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group-hover:shadow-xl transition-all duration-500">
+                  {/* Subtle gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-primary)] to-transparent opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
+                  
+                  {/* Icon at top */}
+                  <div className="absolute top-6 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                    <Plane className="w-5 h-5 text-[var(--accent-primary)] transform rotate-45" />
                   </div>
-                  <span className="text-[var(--text-muted)] text-xs tracking-[0.25em] uppercase">
-                    {c.code}
-                  </span>
+                  
+                  {/* Content */}
+                  <div className="relative z-10 space-y-3">
+                    <div>
+                      <h3 className="text-[var(--text-heading)] font-medium text-xl leading-tight mb-1.5">
+                        {c.city}
+                      </h3>
+                      <p className="text-[var(--text-muted)] text-xs tracking-wide">
+                        {c.country}
+                      </p>
+                    </div>
+                    
+                    {/* Airport code badge */}
+                    <div className="inline-flex items-center justify-center px-3 py-1 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)]">
+                      <span className="text-[var(--text-muted)] text-xs tracking-[0.2em] uppercase font-medium">
+                        {c.code}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Status indicator at bottom */}
+                  <div className="absolute bottom-6 flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] animate-pulse"></div>
+                    <span className="text-[var(--accent-primary)] text-xs font-medium tracking-wide">
+                      Available
+                    </span>
+                  </div>
                 </div>
 
-                <div className="mt-6 pt-5 border-t border-[var(--border-subtle)] flex items-center justify-between">
-                  <span className="text-[var(--text-body)] text-sm">
-                    On-demand charter
-                  </span>
-                  <span className="text-[var(--accent-primary)] text-sm font-medium">
-                    Available
-                  </span>
-                </div>
+                {/* Decorative corner markers */}
+                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-[var(--accent-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-[var(--accent-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             </div>
           ))}
@@ -116,4 +138,3 @@ export function Cities() {
     </section>
   )
 }
-

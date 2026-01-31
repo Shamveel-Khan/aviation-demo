@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg-main)]">
       <Hero />
-      <Selection />
       <Philosophy />
+      <Selection />
       <Cities />
       <Projects />
       <CallToAction />
